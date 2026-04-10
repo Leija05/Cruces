@@ -1,0 +1,89 @@
+{
+  "theme": "light",
+  "archetype": "4 (Swiss & High-Contrast)",
+  "colors": {
+    "background": "#F4F4F5",
+    "surface": "#FFFFFF",
+    "primary": "#09090B",
+    "primary_foreground": "#FFFFFF",
+    "secondary": "#E4E4E7",
+    "secondary_foreground": "#18181B",
+    "accent": "#FF4F00",
+    "accent_foreground": "#FFFFFF",
+    "muted": "#F4F4F5",
+    "muted_foreground": "#71717A",
+    "border": "#E4E4E7",
+    "destructive": "#EF4444",
+    "destructive_foreground": "#FFFFFF",
+    "success": "#22C55E",
+    "success_foreground": "#FFFFFF",
+    "warning": "#F59E0B",
+    "warning_foreground": "#FFFFFF"
+  },
+  "typography": {
+    "font_family_heading": "Cabinet Grotesk, sans-serif",
+    "font_family_body": "Satoshi, sans-serif",
+    "h1": "text-4xl sm:text-5xl tracking-tight font-bold text-[#09090B]",
+    "h2": "text-2xl sm:text-3xl tracking-tight font-semibold text-[#09090B]",
+    "h3": "text-xl sm:text-2xl tracking-tight font-medium text-[#09090B]",
+    "h4": "text-lg sm:text-xl tracking-tight font-medium text-[#18181B]",
+    "body": "text-base leading-relaxed text-[#3F3F46]",
+    "small": "text-sm tracking-wide text-[#71717A]",
+    "overline": "text-xs font-bold uppercase tracking-[0.2em] text-[#71717A]"
+  },
+  "layout": {
+    "spacing_scale": "p-4, p-6, p-8, p-12",
+    "grid_strategy": "Control Room Grid (Dense, Data Correlation). 1px solid borders for separation.",
+    "container_padding": "p-6 lg:p-12",
+    "border_radius": "rounded-none md:rounded-lg",
+    "shadows": {
+      "default": "shadow-sm",
+      "hover": "shadow-md hover:-translate-y-0.5 transition-transform duration-200"
+    }
+  },
+  "components": {
+    "cards": {
+      "style": "Flat background, 1px subtle border (#E4E4E7), no default shadow. Sharp corners or subtle rounded-md.",
+      "padding": "p-6"
+    },
+    "buttons": {
+      "primary": "bg-[#09090B] text-white hover:bg-[#27272A] rounded-md px-6 py-2 transition-colors",
+      "accent": "bg-[#FF4F00] text-white hover:bg-[#E64700] rounded-md px-6 py-2 transition-colors",
+      "outline": "border border-[#E4E4E7] bg-transparent hover:bg-[#F4F4F5] text-[#09090B]"
+    },
+    "badges": {
+      "URGENCIA": "bg-red-100 text-red-800 border-red-200",
+      "LTL": "bg-blue-100 text-blue-800 border-blue-200",
+      "REG_PT": "bg-zinc-100 text-zinc-800 border-zinc-200",
+      "REG_PARTES": "bg-slate-100 text-slate-800 border-slate-200",
+      "BRISTOL": "bg-purple-100 text-purple-800 border-purple-200"
+    },
+    "tables": {
+      "header": "bg-[#F4F4F5] text-[#71717A] text-xs uppercase tracking-wider font-semibold",
+      "row": "border-b border-[#E4E4E7] hover:bg-[#FAFAFA] transition-colors"
+    }
+  },
+  "motion": {
+    "hover": "transition-all duration-200 ease-in-out",
+    "list_stagger": "framer-motion standard stagger for list items"
+  },
+  "icons": {
+    "library": "@phosphor-icons/react",
+    "installation": "yarn add @phosphor-icons/react"
+  },
+  "media": {
+    "image_urls": {}
+  },
+  "instructions_to_main_agent": [
+    "1. Setup fonts: Include Cabinet Grotesk and Satoshi via Fontshare CDN in index.html: <link href=\"https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400&f[]=satoshi@900,700,500,400&display=swap\" rel=\"stylesheet\">",
+    "2. Modify tailwind.config.js to set font-sans to Satoshi and font-heading to Cabinet Grotesk.",
+    "3. Build the layout with a Sidebar (left) and Main Content (right).",
+    "4. Main Content Logic: Check if there are 'Pendientes'. If yes, take the closest one (by Hora Estimada) and render it in a massive 'Cruce Actual' Card at the top (F-pattern focus). Use the accent color (#FF4F00) if it is an 'URGENCIA'.",
+    "5. The remaining 'Pendientes' go into a 'Siguientes Pendientes' table/list below the main card.",
+    "6. Use Shadcn components for Dialogs (Create/Edit), Select (Service Type), Tables, and Dropdown Menus (Actions).",
+    "7. Include 'Marcar como hecho' (Mark as done) button prominently on the 'Cruce Actual' card.",
+    "8. Implement filtering by Status and Service Type.",
+    "9. Use Phosphor Icons for a clean, technical look (e.g., Truck, MapPin, Clock, Warning).",
+    "10. All interactive elements MUST have data-testid attributes."
+  ]
+}
