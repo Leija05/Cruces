@@ -13,6 +13,7 @@ from enum import Enum
 import pandas as pd
 import io
 import re
+from contextlib import asynccontextmanager
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -20,7 +21,14 @@ load_dotenv(ROOT_DIR / '.env')
 # In-memory storage (reemplaza MongoDB)
 cruces_storage: List[dict] = []
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    """Arranque del backend sin datos precargados"""
+    logger.info(f"Backend iniciado en modo vacío con {len(cruces_storage)} cruces")
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 api_router = APIRouter(prefix="/api")
 
@@ -392,7 +400,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-@app.on_event("startup")
-async def startup_event():
-    """Arranque del backend sin datos precargados"""
-    logger.info(f"Backend iniciado en modo vacío con {len(cruces_storage)} cruces")
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(
+        app,
+        host=os.environ.get("HOST", "127.0.0.1"),
+        port=int(os.environ.get("PORT", "8001")),
+    )
